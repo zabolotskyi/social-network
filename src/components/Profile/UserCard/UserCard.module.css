@@ -1,0 +1,21 @@
+.avatar_description {
+  display: flex;
+}
+
+.avatar img {
+  width: 60px;
+  height: 60px;
+}
+
+.description {
+  padding-left: 10px;
+}
+
+.description div {
+  padding-bottom: 5px;
+}
+
+.description div:first-child {
+  padding-bottom: 20px;
+  font-size: 20px;
+}
