@@ -3,18 +3,16 @@ import React from 'react';
 import Posts from './Posts/Posts';
 import UserCard from './UserCard/UserCard';
 
-import styles from './Profile.module.css';
+let postsData = [
+  { id: 1, message: "First comment", likes: 10 },
+  { id: 2, message: "Stop spamming!", likes: 23 }
+];
 
 const Profile = () => (
-  <div className={styles.profile}>
-    <div className={styles.photo_wall}>
-      <img alt="theme" src="https://static.dgnb.de/fileadmin/dgnb-system/de/gebaeude/im-betrieb/Dutchman-Office_LaSalle-848-345px.jpg?m=1582814195" />
-    </div>
-    <div className={styles.profile_info}>
-      <UserCard />
-      <Posts />
-    </div>
-  </div>
+  <React.Fragment>
+    <UserCard />
+    <Posts posts={postsData} />
+  </React.Fragment>
 );
 
 export default Profile;

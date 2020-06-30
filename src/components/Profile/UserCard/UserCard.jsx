@@ -3,20 +3,32 @@ import React from 'react';
 import styles from './UserCard.module.css';
 
 const UserCard = () => (
-  <React.Fragment>
-    <div className={styles.avatar_description}>
-      <div className={styles.avatar}>
-        <img alt="avatar" src="https://ae01.alicdn.com/kf/HTB1iSSfMNjaK1RjSZKzq6xVwXXa8/3D-DIY-Diamond-Painting-Pug-Dog-Animals-Embroidery-Full-Square-Diamond-Painting-Cross-Stitch-Rhinestone-Mosaic.jpg_640x640q70.jpg" />
-      </div>
-      <div className={styles.description}>
-        <div>Name: Puggy D.</div>
-        <div>Date of birth: 2nd January</div>
-        <div>City: Zhovti Vody</div>
-        <div>Education: PTU'20</div>
-        <div>Website: pug.com</div>
+  <div className={styles.top_header}>
+    <div className={styles.top_header_thumb}>
+      <img alt="nature" src="https://html.crumina.net/html-olympus/img/top-header1.jpg" />
+    </div>
+    <div className={styles.profile_section}>
+      <div className={styles.row}>
+        <div className={styles.row_nav}>
+          <div>Timeline</div>
+          <div>About</div>
+          <div>Friends</div>
+        </div>
+        <div className={styles.row_nav}>
+          <div>Photos</div>
+          <div>Videos</div>
+          <div>...</div>
+        </div>
       </div>
     </div>
-  </React.Fragment>
+    <div className={styles.top_header_author}>
+      <img alt="theme" src="https://html.crumina.net/html-olympus/img/author-main1.jpg" />
+      <div className={styles.author_content}>
+        <div className={styles.author_name}>James Spiegel</div>
+        <div className={styles.author_location}>San Francisco, CA</div>
+      </div>
+    </div>
+  </div>
 );
 
 export default UserCard;

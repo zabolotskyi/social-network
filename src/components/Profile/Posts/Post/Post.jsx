@@ -2,10 +2,13 @@ import React from 'react';
 
 import styles from './Post.module.css';
 
-const Post = () => (
+const Post = props => (
   <div className={styles.post}>
     <div className={styles.circle} />
-    <div>Message 1</div>
+    <div className={styles.message}>
+      <div>{props.message}</div>
+      <div className={styles.likes}>Likes: {props.likes}</div>
+    </div>
   </div>
 );
 

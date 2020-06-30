@@ -1,0 +1,25 @@
+.message {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 3px;
+}
+
+.username {
+  font-weight: bold;
+  color: #515365;
+}
+
+.message, .message_info {
+  color: #9a9fbf;
+}
+
+.message_info {
+  font-size: 10px;
+}

@@ -1,7 +1,7 @@
 .nav {
   grid-area: nav;
   padding: 10px;
-  background-color: #3b4d61;
+  background: #ff5e3a;
 }
 
 .item {
@@ -9,10 +9,10 @@
 }
 
 .item a {
-  color: white;
   text-decoration: none;
+  color: white;
 }
 
-.active a {
+a.active {
   color: goldenrod;
 }

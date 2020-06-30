@@ -4,7 +4,11 @@ import Post from './Post/Post';
 
 import styles from './Posts.module.css';
 
-const Posts = () => (
+let renderPosts = posts => posts.map(post => (
+  <Post key={post.id} id={post.id} message={post.message} likes={post.likes} />
+));
+
+const Posts = props => (
   <React.Fragment>
     <div className={styles.new_post}>
       <div>My posts</div>
@@ -14,8 +18,7 @@ const Posts = () => (
       </div>
     </div>
     <div className={styles.posts}>
-      <Post />
-      <Post />
+      {renderPosts(props.posts)}
     </div>
   </React.Fragment>
 );

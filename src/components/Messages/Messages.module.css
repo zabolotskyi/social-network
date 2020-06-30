@@ -1,0 +1,31 @@
+.messages_container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100%;
+}
+
+.dialogs {
+  overflow: scroll;
+  max-height: calc(100vh - 90px);
+  border-right: 1px solid #9a9fbf;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.write_message {
+  margin: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #9a9fbf;
+  background: #edf2f6;
+  font-size: 16px;
+  color: #515365;
+}
+
+.empty_state {
+  margin: auto;
+}
