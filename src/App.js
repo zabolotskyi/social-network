@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import MessagesContainer from './components/Messages/MessagesContainer';
@@ -11,24 +11,18 @@ import Settings from './components/Settings/Settings';
 
 import './App.css';
 
-const App = props => (
-  <BrowserRouter>
-    <div className="app-wrapper">
-      <Header />
-      <Navbar />
-      <div className="app-wrapper-content">
-        <Route path="/profile" render={() =>
-          <Profile store={props.store}/>
-        } />
-        <Route exact path="/messages" render={() =>
-          <MessagesContainer store={props.store} />
-        } />
-        <Route path="/news" component={News} />
-        <Route path="/music" component={Music} />
-        <Route path="/settings" component={Settings} />
-      </div>
+const App = () => (
+  <div className="app-wrapper">
+    <Header />
+    <Navbar />
+    <div className="app-wrapper-content">
+      <Route path="/profile" render={() => <Profile />} />
+      <Route exact path="/messages" render={() => <MessagesContainer />} />
+      <Route path="/news" component={News} />
+      <Route path="/music" component={Music} />
+      <Route path="/settings" component={Settings} />
     </div>
-  </BrowserRouter>
+  </div>
 );
 
 export default App;

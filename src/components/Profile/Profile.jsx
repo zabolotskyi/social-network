@@ -3,10 +3,10 @@ import React from 'react';
 import PostsContainer from './Posts/PostsContainer';
 import UserCard from './UserCard/UserCard';
 
-const Profile = props => (
+const Profile = () => (
   <React.Fragment>
     <UserCard />
-    <PostsContainer store={props.store} />
+    <PostsContainer />
   </React.Fragment>
 );
 
