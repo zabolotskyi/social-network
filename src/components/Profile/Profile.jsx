@@ -1,17 +1,12 @@
 import React from 'react';
 
-import Posts from './Posts/Posts';
+import PostsContainer from './Posts/PostsContainer';
 import UserCard from './UserCard/UserCard';
 
-let postsData = [
-  { id: 1, message: "First comment", likes: 10 },
-  { id: 2, message: "Stop spamming!", likes: 23 }
-];
-
-const Profile = () => (
+const Profile = props => (
   <React.Fragment>
     <UserCard />
-    <Posts posts={postsData} />
+    <PostsContainer store={props.store} />
   </React.Fragment>
 );
 

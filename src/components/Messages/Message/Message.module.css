@@ -1,7 +1,12 @@
-.message {
+.message_wrapper {
   display: flex;
   margin-bottom: 10px;
   padding: 0 10px;
+}
+
+.message_wrapper img {
+  width: 48px;
+  padding-right: 10px;
 }
 
 .info {
