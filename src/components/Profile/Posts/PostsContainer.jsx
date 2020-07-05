@@ -1,29 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Posts from './Posts';
 
 import { addPostActionCreator, addTempPostActionCreator } from '../../../redux/profileReducer';
-import { StoreContext } from '../../../storeContext';
 
-const PostsContainer = () => (
-  <StoreContext.Consumer>
-    {store => {
-      const state = store.getState().profile;
-
-      const addPost = () => store.dispatch(addPostActionCreator());
-      const addTempPost = tempText => store.dispatch(addTempPostActionCreator(tempText));
-
-      return (
-        <Posts
-          posts={state.posts}
-          tempPost={state.tempPost}
-          addPost={addPost}
-          addTempPost={addTempPost}
-        />
-      );
-    }}
-  </StoreContext.Consumer>
-
+const PostsContainer = props => (
+  <Posts
+    posts={props.posts}
+    tempPost={props.tempPost}
+    addPost={props.addPost}
+    addTempPost={props.addTempPost}
+  />
 );
 
-export default PostsContainer;
+const mapStateToProps = state => ({
+  posts: state.profile.posts,
+  tempPost: state.profile.tempPost
+});
+
+const mapDispatchToProps = dispatch => ({
+  addPost: () => dispatch(addPostActionCreator()),
+  addTempPost: tempText => dispatch(addTempPostActionCreator(tempText))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer);

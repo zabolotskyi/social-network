@@ -1,29 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Messages from './Messages';
 
 import { addPrivateMessageActionCreator, addTempPrivateMessageActionCreator } from '../../redux/messagesReducer';
-import { StoreContext } from '../../storeContext';
 
-const MessagesContainer = () => (
-  <StoreContext.Consumer>
-    {store => {
-      const state = store.getState().messages;
-
-      const addPrivateMessage = () => store.dispatch(addPrivateMessageActionCreator());
-      const addTempPrivateMessage = tempMessage => store.dispatch(addTempPrivateMessageActionCreator(tempMessage));
-
-      return (
-        <Messages
-          dialogs={state.dialogs}
-          messages={state.privateMessages}
-          tempPrivateMessage={state.tempPrivateMessage}
-          addPrivateMessage={addPrivateMessage}
-          addTempPrivateMessage={addTempPrivateMessage}
-        />
-      );
-    }}
-  </StoreContext.Consumer>
+const MessagesContainer = props => (
+  <Messages
+    dialogs={props.dialogs}
+    privateMessages={props.privateMessages}
+    tempPrivateMessage={props.tempPrivateMessage}
+    addPrivateMessage={props.addPrivateMessage}
+    addTempPrivateMessage={props.addTempPrivateMessage}
+  />
 );
 
-export default MessagesContainer;
+const mapStateToProps = state => ({
+  dialogs: state.messages.dialogs,
+  privateMessages: state.messages.privateMessages,
+  tempPrivateMessage: state.messages.tempPrivateMessage
+});
+
+const mapDispatchToProps = dispatch => ({
+  addPrivateMessage: () => dispatch(addPrivateMessageActionCreator()),
+  addTempPrivateMessage: tempMessage => dispatch(addTempPrivateMessageActionCreator(tempMessage))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesContainer);

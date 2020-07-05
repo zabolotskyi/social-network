@@ -30,7 +30,7 @@ const Messages = props => {
       </div>
       <div className={styles.messages}>
         <div className={styles.messages_list}>
-          {renderMessages(props.messages)}
+          {renderMessages(props.privateMessages)}
         </div>
         <div className={styles.new_message}>
           <input

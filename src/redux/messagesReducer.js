@@ -23,13 +23,18 @@ const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRIVATE_MESSAGE:
       const newMessage = { id: 3, name: 'User 3', message: state.tempPrivateMessage };
-      state.privateMessages.push(newMessage);
-      state.tempPrivateMessage = '';
-      return state;
+
+      return {
+        ...state,
+        privateMessages: [...state.privateMessages, newMessage],
+        tempPrivateMessage: ''
+      };
 
     case ADD_TEMP_PRIVATE_MESSAGE:
-      state.tempPrivateMessage = action.payload.tempMessage;
-      return state;
+      return {
+        ...state,
+        tempPrivateMessage: action.payload.tempMessage
+      };
 
     default:
       return state;

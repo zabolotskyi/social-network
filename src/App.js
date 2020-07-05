@@ -8,6 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
+import UsersContainer from './components/Users/UsersContainer';
 
 import './App.css';
 
@@ -18,6 +19,7 @@ const App = () => (
     <div className="app-wrapper-content">
       <Route path="/profile" render={() => <Profile />} />
       <Route exact path="/messages" render={() => <MessagesContainer />} />
+      <Route path="/users" render={() => <UsersContainer />} />
       <Route path="/news" component={News} />
       <Route path="/music" component={Music} />
       <Route path="/settings" component={Settings} />
