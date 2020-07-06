@@ -6,7 +6,7 @@ const User = props => (
   <div className={styles.user}>
     <div className={styles.user_info_left}>
       <div>
-        <img alt="user" src="https://image.flaticon.com/icons/svg/147/147144.svg" />
+        <img alt="user" src={props.avatarSrc} />
       </div>
       <button onClick={props.toggleFollow}>
         {props.buttonText}
@@ -15,11 +15,11 @@ const User = props => (
     <div className={styles.user_info_right}>
       <div className={styles.user_name_status}>
         <div>{props.user.name}</div>
-        <div className={styles.status}>{props.user.status}</div>
+        <div className={styles.status}>{props.status}</div>
       </div>
       <div className={styles.user_location}>
-        <div>{props.user.location.country}</div>
-        <div>{props.user.location.city}</div>
+        <div>Ukraine</div>
+        <div>Zhovti Vody</div>
       </div>
     </div>
   </div>

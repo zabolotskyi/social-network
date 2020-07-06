@@ -1,57 +1,61 @@
+import * as axios from 'axios';
 import React from 'react';
 
+import Pagination from './Pagination/Pagination';
 import User from './User/User';
 
 import styles from './Users.module.css';
 
-const Users = props => {
-  if (!props.users.length) {
-    props.loadUsers([
-      {
-        id: 1,
-        name: 'Zhabka',
-        status: 'My swamp is the best',
-        location: {
-          country: 'Land',
-          city: 'Swampville'
-        },
-        avatarSrc: 'https://html.crumina.net/html-olympus/img/author-main1.jpg',
-        isFollowing: true
-      },
-      {
-        id: 2,
-        name: 'Kote',
-        status: 'Mur-meow',
-        location: {
-          country: 'Cats Republic',
-          city: 'Playground'
-        },
-        avatarSrc: 'https://html.crumina.net/html-olympus/img/author-main1.jpg',
-        isFollowing: false
-      }
-    ]);
+class Users extends React.Component {
+
+  componentDidMount() {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.currentPage}`)
+      .then(res => {
+        this.props.loadUsers(res.data.items);
+        this.props.setTotalUsersCount(res.data.totalCount);
+      });
   }
 
-  const toggleFollow = user => () => {
-    if (user.isFollowing) {
-      props.unfollow(user.id);
+  toggleFollow = user => () => {
+    if (user.followed) {
+      this.props.unfollow(user.id);
     } else {
-      props.follow(user.id);
+      this.props.follow(user.id);
     }
-  };
+  }
 
-  return (
-    <div className={styles.users}>
-      {props.users.map(user =>
-        <User
-          key={user.id}
-          user={user}
-          buttonText={user.isFollowing ? 'Unfollow' : 'Follow'}
-          toggleFollow={toggleFollow(user)}
+  onLoadUsers = currentPage =>
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${currentPage}`)
+      .then(res => this.props.loadUsers(res.data.items));
+
+  onSetCurrentPage = currentPage => {
+    this.props.setCurrentPage(currentPage);
+  }
+
+  render() {
+    const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageCount);
+
+    return (
+      <div className={styles.users}>
+        <Pagination
+          currentPage={this.props.currentPage}
+          pagesCount={pagesCount}
+          onLoadUsers={this.onLoadUsers}
+          onSetCurrentPage={this.onSetCurrentPage}
         />
-      )}
-    </div>
-  );
-};
+        {this.props.users.map(user =>
+          <User
+            key={user.id}
+            user={user}
+            status={user.status ? user.status : 'No status'}
+            avatarSrc={user.photos.small ? user.photos.small : 'https://image.flaticon.com/icons/svg/147/147144.svg'}
+            buttonText={user.followed ? 'Unfollow' : 'Follow'}
+            toggleFollow={this.toggleFollow(user)}
+          />
+        )}
+      </div>
+    );
+  }
+}
 
 export default Users;

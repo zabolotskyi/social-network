@@ -1,0 +1,23 @@
+.pagination {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.pagination_navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination_button {
+  width: 75px;
+}
+
+.page_input {
+  width: 50px;
+}
+
+.search_page {
+  justify-self: end;
+}
