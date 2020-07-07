@@ -38,7 +38,7 @@ const Pagination = props => (
     <div className={styles.search_page}>
       <button
         className={styles.pagination_button}
-        onClick={() => props.onLoadUsers(props.currentPage)}
+        onClick={props.onLoadUsers}
       >
         Search
       </button>

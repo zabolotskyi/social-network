@@ -41,11 +41,11 @@ const messagesReducer = (state = initialState, action) => {
   }
 };
 
-export const addPrivateMessageActionCreator = () => ({
+export const addPrivateMessage = () => ({
   type: ADD_PRIVATE_MESSAGE
 });
 
-export const addTempPrivateMessageActionCreator = tempMessage => ({
+export const addTempPrivateMessage = tempMessage => ({
   type: ADD_TEMP_PRIVATE_MESSAGE,
   payload: { tempMessage }
 });

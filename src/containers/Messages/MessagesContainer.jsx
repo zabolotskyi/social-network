@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Messages from './Messages';
 
-import { addPrivateMessageActionCreator, addTempPrivateMessageActionCreator } from '../../redux/messagesReducer';
+import { addPrivateMessage, addTempPrivateMessage } from '../../redux/messagesReducer';
 
 const MessagesContainer = props => (
   <Messages
@@ -21,9 +21,9 @@ const mapStateToProps = state => ({
   tempPrivateMessage: state.messages.tempPrivateMessage
 });
 
-const mapDispatchToProps = dispatch => ({
-  addPrivateMessage: () => dispatch(addPrivateMessageActionCreator()),
-  addTempPrivateMessage: tempMessage => dispatch(addTempPrivateMessageActionCreator(tempMessage))
-});
+const mapDispatchToProps = {
+  addPrivateMessage,
+  addTempPrivateMessage
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesContainer);

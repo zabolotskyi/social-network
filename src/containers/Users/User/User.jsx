@@ -1,20 +1,21 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import styles from './User.module.css';
 
 const User = props => (
   <div className={styles.user}>
     <div className={styles.user_info_left}>
-      <div>
+      <NavLink to={`/profile/${props.user.id}`}>
         <img alt="user" src={props.avatarSrc} />
-      </div>
-      <button onClick={props.toggleFollow}>
+      </NavLink>
+      <button onClick={props.onToggleFollow}>
         {props.buttonText}
       </button>
     </div>
     <div className={styles.user_info_right}>
       <div className={styles.user_name_status}>
-        <div>{props.user.name}</div>
+        <NavLink to={`/profile/${props.user.id}`}>{props.user.name}</NavLink>
         <div className={styles.status}>{props.status}</div>
       </div>
       <div className={styles.user_location}>

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Header from './components/Header/Header';
-import MessagesContainer from './components/Messages/MessagesContainer';
-import Music from './components/Music/Music';
-import Navbar from './components/Navbar/Navbar';
-import News from './components/News/News';
-import Profile from './components/Profile/Profile';
-import Settings from './components/Settings/Settings';
-import UsersContainer from './components/Users/UsersContainer';
+import Header from './containers/Header/Header';
+import MessagesContainer from './containers/Messages/MessagesContainer';
+import Music from './containers/Music/Music';
+import Navbar from './containers/Navbar/Navbar';
+import News from './containers/News/News';
+import ProfileContainer from './containers/Profile/ProfileContainer';
+import Settings from './containers/Settings/Settings';
+import UsersContainer from './containers/Users/UsersContainer';
 
 import './App.css';
 
@@ -17,7 +17,7 @@ const App = () => (
     <Header />
     <Navbar />
     <div className="app-wrapper-content">
-      <Route path="/profile" render={() => <Profile />} />
+      <Route path="/profile" render={() => <ProfileContainer />} />
       <Route exact path="/messages" render={() => <MessagesContainer />} />
       <Route path="/users" render={() => <UsersContainer />} />
       <Route path="/news" component={News} />

@@ -3,9 +3,9 @@ import React from 'react';
 import PostsContainer from './Posts/PostsContainer';
 import UserCard from './UserCard/UserCard';
 
-const Profile = () => (
+const Profile = props => (
   <React.Fragment>
-    <UserCard />
+    <UserCard {...props} />
     <PostsContainer />
   </React.Fragment>
 );

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Posts from './Posts';
 
-import { addPostActionCreator, addTempPostActionCreator } from '../../../redux/profileReducer';
+import { addPost, addTempPost } from '../../../redux/profileReducer';
 
 const PostsContainer = props => (
   <Posts
@@ -19,9 +19,9 @@ const mapStateToProps = state => ({
   tempPost: state.profile.tempPost
 });
 
-const mapDispatchToProps = dispatch => ({
-  addPost: () => dispatch(addPostActionCreator()),
-  addTempPost: tempText => dispatch(addTempPostActionCreator(tempText))
-});
+const mapDispatchToProps = {
+  addPost,
+  addTempPost
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer);
