@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Header from './containers/Header/Header';
+import HeaderContainer from './containers/Header/HeaderContainer';
 import MessagesContainer from './containers/Messages/MessagesContainer';
 import Music from './containers/Music/Music';
 import Navbar from './containers/Navbar/Navbar';
@@ -14,10 +14,10 @@ import './App.css';
 
 const App = () => (
   <div className="app-wrapper">
-    <Header />
+    <HeaderContainer />
     <Navbar />
     <div className="app-wrapper-content">
-      <Route path="/profile" render={() => <ProfileContainer />} />
+      <Route path="/profile/:id?" render={() => <ProfileContainer />} />
       <Route exact path="/messages" render={() => <MessagesContainer />} />
       <Route path="/users" render={() => <UsersContainer />} />
       <Route path="/news" component={News} />

@@ -1,6 +1,8 @@
 import * as axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 
 import Profile from './Profile';
 
@@ -10,7 +12,8 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     this.props.setIsFetching(true);
-    axios.get('https://social-network.samuraijs.com/api/1.0/profile/2')
+    const userId = this.props.match.params.id ? this.props.match.params.id : '9096';
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
       .then(res => {
         this.props.setIsFetching(false);
         this.props.setUserProfile(res.data);
@@ -33,4 +36,7 @@ const mapDispatchToProps = {
   setIsFetching
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(ProfileContainer);

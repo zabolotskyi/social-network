@@ -1,5 +1,7 @@
 .header {
   grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background: #3f4257;
 }
 
@@ -7,4 +9,16 @@
   width: 48px;
   height: 48px;
   padding: 5px;
+}
+
+.login {
+  align-self: center;
+  justify-self: end;
+  padding-right: 15px;
+  color: #ffffff;
+}
+
+.login a {
+  text-decoration: none;
+  color: #ffffff;
 }
