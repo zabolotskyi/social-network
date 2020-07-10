@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { DEFAULT_SMALL_AVATAR_SRC } from '../../../consts';
+
 import styles from './Message.module.css';
 
 const Message = props => (
   <div className={styles.message_wrapper}>
     <div>
-      <img alt="user" src="https://image.flaticon.com/icons/svg/147/147144.svg" />
+      <img alt="user" src={DEFAULT_SMALL_AVATAR_SRC} />
     </div>
     <div className={styles.info}>
       <div>

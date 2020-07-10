@@ -4,9 +4,13 @@ import Post from './Post/Post';
 
 import styles from './Posts.module.css';
 
-const renderPosts = posts => posts.map(post => (
-  <Post key={post.id} id={post.id} message={post.message} likes={post.likes} />
-));
+const renderPosts = posts => posts.map(post => {
+  const { id, message, likes } = post;
+
+  return (
+    <Post key={id} id={id} message={message} likes={likes} />
+  );
+});
 
 const Posts = props => {
   const onAddTempPost = event => {
@@ -32,7 +36,6 @@ const Posts = props => {
         </div>
       </div>
       <div className={styles.posts}>
-        {props.tempPost}
         {renderPosts(props.posts)}
       </div>
     </React.Fragment>

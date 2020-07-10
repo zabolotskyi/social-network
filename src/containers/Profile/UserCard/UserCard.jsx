@@ -1,6 +1,8 @@
 import React from 'react';
 
-import Loader from '../../../components/Loader/Loader';
+import { Loader } from '../../../components/Loader';
+
+import { DEFAULT_BIG_AVATAR_SRC, DEFAULT_WALLPAPER_SRC } from '../../../consts';
 
 import styles from './UserCard.module.css';
 
@@ -12,7 +14,7 @@ const UserCard = props => {
   return (
     <div className={styles.top_header}>
       <div className={styles.top_header_thumb}>
-        <img alt="nature" src="https://html.crumina.net/html-olympus/img/top-header1.jpg" />
+        <img alt="nature" src={DEFAULT_WALLPAPER_SRC} />
       </div>
       <div className={styles.profile_section}>
         <div className={styles.row}>
@@ -34,7 +36,7 @@ const UserCard = props => {
           src={
             props.userProfile.photos.small
               ? props.userProfile.photos.small
-              : "https://html.crumina.net/html-olympus/img/author-main1.jpg"
+              : DEFAULT_BIG_AVATAR_SRC
           }
         />
         <div className={styles.author_content}>

@@ -13,24 +13,48 @@ import {
   unfollow
 } from '../../redux/usersReducer';
 
+import { API_URL } from '../../consts';
+
 class UsersContainer extends React.Component {
 
   componentDidMount() {
-    this.props.setIsFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.currentPage}`)
+    const { pageCount, currentPage, loadUsers, setTotalUsersCount, setIsFetching } = this.props;
+
+    setIsFetching(true);
+    
+    axios.get(
+      `${API_URL}/users?count=${pageCount}&page=${currentPage}`,
+      {
+        withCredentials: true,
+        headers: {
+          "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
+        }
+      }
+    )
       .then(res => {
-        this.props.setIsFetching(false);
-        this.props.loadUsers(res.data.items);
-        this.props.setTotalUsersCount(res.data.totalCount);
+        setIsFetching(false);
+        loadUsers(res.data.items);
+        setTotalUsersCount(res.data.totalCount);
       });
   }
 
   onLoadUsers = () => {
-    this.props.setIsFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageCount}&page=${this.props.currentPage}`)
+    const { pageCount, currentPage, loadUsers, setIsFetching } = this.props;
+
+    setIsFetching(true);
+
+    axios.get(
+      `${API_URL}/users?count=${pageCount}&page=${currentPage}`,
+      {
+        withCredentials: true,
+        headers: {
+          "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
+        }
+      }
+    )
       .then(res => {
-        this.props.setIsFetching(false);
-        this.props.loadUsers(res.data.items)
+        setIsFetching(false);
+        loadUsers(res.data.items)
       });
   }
     
@@ -40,22 +64,53 @@ class UsersContainer extends React.Component {
   }
 
   onToggleFollow = user => () => {
+    const { follow, unfollow } = this.props;
+
     if (user.followed) {
-      this.props.unfollow(user.id);
+      axios.delete(
+        `${API_URL}/follow/${user.id}`,
+        {
+          withCredentials: true,
+          headers: {
+            "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
+          }
+        }
+      )
+        .then(res => {
+          if (res.data.resultCode === 0) {
+            unfollow(user.id);
+          }
+        });
     } else {
-      this.props.follow(user.id);
+      axios.post(
+        `${API_URL}/follow/${user.id}`,
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
+          }
+        }
+      )
+        .then(res => {
+          if (res.data.resultCode === 0) {
+            follow(user.id);
+          }
+        });
     }
   }
 
   render() {
-    const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageCount);
+    const { users, totalUsersCount, pageCount, currentPage, isFetching } = this.props;
+
+    const pagesCount = Math.ceil(totalUsersCount / pageCount);
 
     return (
       <Users
-        users={this.props.users}
+        users={users}
         pagesCount={pagesCount}
-        currentPage={this.props.currentPage}
-        isFetching={this.props.isFetching}
+        currentPage={currentPage}
+        isFetching={isFetching}
         onLoadUsers={this.onLoadUsers}
         onSetCurrentPage={this.onSetCurrentPage}
         onToggleFollow={this.onToggleFollow}
@@ -64,13 +119,17 @@ class UsersContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  users: state.users.users,
-  pageCount: state.users.pageCount,
-  currentPage: state.users.currentPage,
-  totalUsersCount: state.users.totalUsersCount,
-  isFetching: state.users.isFetching
-});
+const mapStateToProps = state => {
+  const { users, pageCount, currentPage, totalUsersCount, isFetching } = state.users;
+
+  return {
+    users,
+    pageCount,
+    currentPage,
+    totalUsersCount,
+    isFetching
+  };
+};
 
 const mapDispatchToProps = {
   loadUsers,

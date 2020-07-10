@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loader from '../../components/Loader/Loader';
+import { Loader } from '../../components/Loader';
 import Pagination from './Pagination/Pagination';
 import User from './User/User';
 
@@ -17,12 +17,9 @@ const Users = props => (
     {props.isFetching ?
       <Loader /> : (
         props.users.map(user =>
-          <User
+          <User 
             key={user.id}
             user={user}
-            status={user.status ? user.status : 'No status'}
-            avatarSrc={user.photos.small ? user.photos.small : 'https://image.flaticon.com/icons/svg/147/147144.svg'}
-            buttonText={user.followed ? 'Unfollow' : 'Follow'}
             onToggleFollow={props.onToggleFollow(user)}
           />
         )

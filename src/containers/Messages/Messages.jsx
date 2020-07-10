@@ -5,13 +5,21 @@ import Message from './Message/Message';
 
 import styles from './Messages.module.css';
 
-const renderDialogs = dialogs => dialogs.map(dialog => (
-  <Dialog key={dialog.id} id={dialog.id} name={dialog.name} messages={dialog.messages} />
-));
+const renderDialogs = dialogs => dialogs.map(dialog => {
+  const {id, name, messages } = dialog;
 
-const renderMessages = messages => messages.map(message => (
-  <Message key={message.id} id={message.id} name={message.name} message={message.message} />
-));
+  return (
+    <Dialog key={id} id={id} name={name} messages={messages} />
+  );
+});
+
+const renderMessages = messages => messages.map(msg => {
+  const {id, name, message } = msg;
+
+  return (
+    <Message key={id} id={id} name={name} message={message} />
+  );
+});
 
 const Messages = props => {
   const onAddTempPrivateMessage = event => {

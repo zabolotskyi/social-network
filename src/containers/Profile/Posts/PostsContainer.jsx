@@ -6,12 +6,7 @@ import Posts from './Posts';
 import { addPost, addTempPost } from '../../../redux/profileReducer';
 
 const PostsContainer = props => (
-  <Posts
-    posts={props.posts}
-    tempPost={props.tempPost}
-    addPost={props.addPost}
-    addTempPost={props.addTempPost}
-  />
+  <Posts {...props} />
 );
 
 const mapStateToProps = state => ({

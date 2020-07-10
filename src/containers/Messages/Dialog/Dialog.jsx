@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { DEFAULT_SMALL_AVATAR_SRC } from '../../../consts';
+
 import styles from './Dialog.module.css';
 
 const Dialog = props => {
@@ -11,7 +13,7 @@ const Dialog = props => {
       <NavLink to={path} className={styles.link} >
         <div className={styles.dialog}>
           <div>
-            <img alt="user" src="https://image.flaticon.com/icons/svg/147/147144.svg" />
+            <img alt="user" src={DEFAULT_SMALL_AVATAR_SRC} />
           </div>
           <div className={styles.info}>
             <div>
