@@ -6,4 +6,4 @@ export const DEFAULT_BIG_AVATAR_SRC = 'https://html.crumina.net/html-olympus/img
 
 export const DEFAULT_WALLPAPER_SRC = 'https://html.crumina.net/html-olympus/img/top-header1.jpg';
 
-export const API_URL = 'https://social-network.samuraijs.com/api/1.0';
+export const API_URL = 'https://social-network.samuraijs.com/api/1.0/';

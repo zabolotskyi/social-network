@@ -1,4 +1,3 @@
-import * as axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -6,21 +5,18 @@ import { compose } from 'redux';
 
 import Profile from './Profile';
 
-import { API_URL } from '../../consts';
 import { setIsFetching, setUserProfile } from '../../redux/profileReducer';
+import { getUser } from '../../api/api';
 
 class ProfileContainer extends React.Component {
 
   componentDidMount() {
     this.props.setIsFetching(true);
     const userId = this.props.match.params.id ?? '9096';
-    axios.get(
-      `${API_URL}/profile/${userId}`,
-      { withCredentials: true }
-    )
+    getUser(userId)
       .then(res => {
         this.props.setIsFetching(false);
-        this.props.setUserProfile(res.data);
+        this.props.setUserProfile(res);
       });
   }
 

@@ -1,4 +1,3 @@
-import * as axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -13,7 +12,7 @@ import {
   unfollow
 } from '../../redux/usersReducer';
 
-import { API_URL } from '../../consts';
+import { followUser, getUsers, unfollowUser } from '../../api/api';
 
 class UsersContainer extends React.Component {
 
@@ -22,19 +21,11 @@ class UsersContainer extends React.Component {
 
     setIsFetching(true);
     
-    axios.get(
-      `${API_URL}/users?count=${pageCount}&page=${currentPage}`,
-      {
-        withCredentials: true,
-        headers: {
-          "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
-        }
-      }
-    )
+    getUsers(pageCount, currentPage)
       .then(res => {
         setIsFetching(false);
-        loadUsers(res.data.items);
-        setTotalUsersCount(res.data.totalCount);
+        loadUsers(res.items);
+        setTotalUsersCount(res.totalCount);
       });
   }
 
@@ -43,18 +34,10 @@ class UsersContainer extends React.Component {
 
     setIsFetching(true);
 
-    axios.get(
-      `${API_URL}/users?count=${pageCount}&page=${currentPage}`,
-      {
-        withCredentials: true,
-        headers: {
-          "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
-        }
-      }
-    )
+    getUsers(pageCount, currentPage)
       .then(res => {
         setIsFetching(false);
-        loadUsers(res.data.items)
+        loadUsers(res.items)
       });
   }
     
@@ -67,33 +50,16 @@ class UsersContainer extends React.Component {
     const { follow, unfollow } = this.props;
 
     if (user.followed) {
-      axios.delete(
-        `${API_URL}/follow/${user.id}`,
-        {
-          withCredentials: true,
-          headers: {
-            "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
-          }
-        }
-      )
+      unfollowUser(user.id)
         .then(res => {
-          if (res.data.resultCode === 0) {
+          if (res.resultCode === 0) {
             unfollow(user.id);
           }
         });
     } else {
-      axios.post(
-        `${API_URL}/follow/${user.id}`,
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            "API-KEY": "17595c62-ba18-4475-be9c-85ddf88bea8a"
-          }
-        }
-      )
+      followUser(user.id)
         .then(res => {
-          if (res.data.resultCode === 0) {
+          if (res.resultCode === 0) {
             follow(user.id);
           }
         });
